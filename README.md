@@ -7,7 +7,7 @@ Vamos implementar um sistema de vendas online com a possibilidade de realizar pe
 1 - Não deve criar um pedido com cpf inválido - OK
 2 - Deve criar um pedido com 3 itens (com descrição, preço e quantidade) - OK
 3 - Ao fazer um pedido, a quantidade de um item não pode ser negativa - OK
-4 - Ao fazer um pedido, o mesmo item não pode ser informado mais de uma vez
+4 - Ao fazer um pedido, o mesmo item não pode ser informado mais de uma vez - OK
 5 - Deve criar um pedido com cupom de desconto (percentual sobre o total do pedido)
 6 - Não deve aplicar cupom de desconto expirado
 7 - Nenhuma dimensão do item pode ser negativa

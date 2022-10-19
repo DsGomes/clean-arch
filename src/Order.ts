@@ -12,6 +12,9 @@ export default class Order {
     }
 
     addItem (item: Item, quantity: number): void {
+        const itemId = this.orderItems.find(orderItem => orderItem.itemId === item.itemId);
+        if(itemId) throw new Error('Item already exists');
+
         this.orderItems.push(new OrderItems(item.itemId, item.price, quantity));
     }
 

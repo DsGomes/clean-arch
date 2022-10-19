@@ -25,4 +25,11 @@ describe('#Order', () => {
         const order = new Order(cpf);
         expect(() => { order.addItem(new Item(1, 'Computador', 20), -1); }).toThrow(new Error('Invalid quantity'));
     })
+
+    test('Should not create order when item already exists', () => {
+        const cpf = '111.444.777-35';
+        const order = new Order(cpf);
+        order.addItem(new Item(1, 'Computador', 20), 1);
+        expect(() => { order.addItem(new Item(1, 'Computador', 20), 1); }).toThrow(new Error('Item already exists'));
+    })
 })
