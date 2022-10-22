@@ -1,3 +1,4 @@
+import Coupon from "./Coupon";
 import Cpf from "./Cpf";
 import Item from "./Item";
 import OrderItems from './OrderItems';
@@ -5,6 +6,7 @@ import OrderItems from './OrderItems';
 export default class Order {
     private Cpf: Cpf;
     private orderItems: OrderItems[];
+    private coupon?: Coupon;
 
     constructor(readonly cpf: string) {
         this.Cpf = new Cpf(cpf);
@@ -18,11 +20,19 @@ export default class Order {
         this.orderItems.push(new OrderItems(item.itemId, item.price, quantity));
     }
 
+    addCoupon (coupon: Coupon) : void {
+        this.coupon = coupon;
+    }
+
     execute (): number {
-        const orderTotal = this.orderItems.reduce((total, orderItem) => {
+        let itemsTotal = this.orderItems.reduce((total, orderItem) => {
             return total += orderItem.getTotal();
         }, 0);
 
-        return orderTotal;
+        if(this.coupon){
+            itemsTotal -= this.coupon.calculateDiscount(itemsTotal);
+        }
+
+        return itemsTotal;
     }
 }
